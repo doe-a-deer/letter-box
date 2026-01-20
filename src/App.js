@@ -930,5 +930,4 @@ ${content}`
   );
 };
 
-export default EpistolaryLetterBot;cd ~/Desktop/letter-box
-cd ~/Desktop/letter-box
+export default EpistolaryLetterBot;
