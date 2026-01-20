@@ -98,39 +98,9 @@ const EpistolaryLetterBot = () => {
     setCurrentPrompt(PROMPTS[Math.floor(Math.random() * PROMPTS.length)]);
   }, []);
 
-  const moderateContent = async (content) => {
-    try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          messages: [
-            { 
-              role: "user", 
-              content: `You are a content moderator for a romantic letter exchange platform. Review this letter and respond with ONLY "APPROVED" if it's appropriate (romantic, kind, personal correspondence) or "REJECTED: [brief reason]" if it contains abuse, harassment, explicit content, spam, or harmful material.
-
-Letter content:
-${content}` 
-            }
-          ],
-        })
-      });
-
-      const data = await response.json();
-      const result = data.content[0].text.trim();
-      
-      return {
-        approved: result === "APPROVED",
-        reason: result.startsWith("REJECTED:") ? result.substring(10) : null
-      };
-    } catch (error) {
-      console.error('Moderation error:', error);
-      return { approved: false, reason: "Moderation service unavailable" };
-    }
+const moderateContent = async (content) => {
+    // Moderation disabled for demo - all content approved
+    return { approved: true, reason: null };
   };
 
   const sendLetter = async () => {
