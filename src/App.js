@@ -99,9 +99,6 @@ const EpistolaryLetterBot = () => {
   }, []);
 
   const moderateContent = async (content) => {
-  // Moderation disabled for demo
-  return { approved: true, reason: null };
-};
     try {
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
